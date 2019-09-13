@@ -4,7 +4,6 @@ import numpy as np
 
 from PIL import Image
 from io import BytesIO
-from matplotlib.pyplot import imshow
 
 from api.models.net import Net
 
@@ -27,10 +26,8 @@ def build_class_dict(array, classes):
     Builds a dictionary out of the result array and provided classes.
     '''
     class_dict = {}
-    print(type(array))
     if( type(array) == torch.Tensor):
         array = array.tolist()[0]
-        print(array)
     
     if( len(array) != len(classes) ):
         raise Exception("Incorrect mapping of results to classes.")
