@@ -1,0 +1,5 @@
+{
+    "model_url": "https://dhpyconstorage.blob.core.windows.net/ml-models/cifar10.pth",
+    "filepath": "api/data/model.pth",
+    "update_key": "LEMKLZSNWUGKLKGEWHSLAWFUWLGYWLZWJW"
+}

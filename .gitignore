@@ -105,7 +105,7 @@ ENV/
 .vscode
 
 # Security settings
-config.json
+#config.json
 
 # actual ml models
 data/*
