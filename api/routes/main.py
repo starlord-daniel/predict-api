@@ -2,14 +2,18 @@ from flask import Blueprint, make_response, request, jsonify
 from flask.views import MethodView
 
 from api import api
-from api.model_helper import load_model, predict_from_url
+from api.model_helper import predict_from_url, load_online_model
 
 import json
 
 simple = Blueprint('simple', __name__)
 
+# load config
+with open("config.json", "r") as config_file:
+    config = json.load(config_file)
+
 # load model
-model = load_model('api/data/simple_cnn.pth')
+model = load_online_model(config['model_url'], config['filepath'])
 
 class PredictionRoute(MethodView):
     def post(self):
@@ -36,33 +40,17 @@ api.add_url_rule(
 
 class UpdateRoute(MethodView):
     def post(self):
+        global model
         if request.json == None:
             return make_response('Please set the Content-Type to application/json', 406)
         try:
             input_params = request.json
             
-            # create empty output
-            output = {}
-
-            # download the model and save
-            filepath = input_params['model_url']
-            # TODO: SAVE MODEL
-
-            # load the new model
-            model = load_model(filepath)
-
-            # verify the new model
-
-            # if verification ok:
-            if (True):
-                # replace the new model
-                
-                # Return success message
-                output = { "message": "Model update successful :-)"}
+            if(config['update_key'] == input_params['key']):
+                model = load_online_model(config['model_url'], config['filepath'])
+                output = { "message": "Model update successful :-)" }
             else:
-                # return error message
-                output = { "message": "Model update failed :-("}
-                
+                output = { "message": "Model update un-successful :-(" }
             
             response = make_response(json.dumps(output, indent=4), 200)
             response.headers['Content-Type'] = 'application/json'

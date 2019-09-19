@@ -1,5 +1,6 @@
 import requests
 import torch
+import os
 import numpy as np
 
 from PIL import Image
@@ -9,13 +10,32 @@ from api.models.net import Net
 
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-def download_model(url):
+def load_online_model(model_url, local_file_path, delete_model = False):
     '''
-    Download the model from the specified url and store it in the data folder.
+    Load the model from the specified url and save it at the specified file path.
     '''
-    return True
+    # remove the old model
+    try:
+        os.remove(local_file_path)
+    except OSError:
+        pass
 
-def load_model(filepath):
+    # load image
+    url_response = requests.get(model_url)
+
+    with open(local_file_path, 'wb') as model_file:
+        model_file.write(url_response.content)
+    
+    # load model into storage
+    model = load_local_model(local_file_path)
+    
+    # delete downloaded model
+    if(delete_model == True):
+        os.remove(local_file_path)
+        
+    return model
+
+def load_local_model(filepath):
     new_model = Net()
     new_model.load_state_dict(torch.load(filepath))
     new_model.eval()
