@@ -112,3 +112,4 @@ data/*
 !data/*.txt
 *.pt
 *.pth
+config.json
