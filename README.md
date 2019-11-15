@@ -1,5 +1,17 @@
 # Prediction API
 
+## Create config.json
+
+To connect the API with the right model, you need to specify its location in the config.json file in root of the project. It looks like this:
+
+```json
+{
+    "model_url": "https://your.model.url",
+    "filepath": "api/data/model.pth",
+    "update_key": "LEMKLZSNWUGKLKGEWHSLAWFUWLGYWLZWJW"
+}
+```
+
 ## Docker Container 
 
 This setup requires Docker to run on your PC. I've used Windows and Powershell or the terminal on Mac to run the commands. You can find the downloads for [Windows](https://www.docker.com/docker-windows) and [Mac](https://www.docker.com/docker-mac) at the respective links. 
