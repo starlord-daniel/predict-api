@@ -1,4 +1,5 @@
 # Prediction API
+[![Build status](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_apis/build/status/Pytorch%20Predict%20API-Docker%20container-CI)](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_build/latest?definitionId=14)
 
 ## Create config.json
 
