@@ -1,6 +1,8 @@
 # Prediction API
 [![Build status](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_apis/build/status/Pytorch%20Predict%20API-Docker%20container-CI)](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_build/latest?definitionId=14)
 
+[Latest image on Docker Hub](https://hub.docker.com/repository/docker/dheinze/predict-service)
+
 ## Create config.json
 
 To connect the API with the right model, you need to specify its location in the config.json file in root of the project. It looks like this:
