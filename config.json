@@ -1,0 +1,5 @@
+{
+    "model_url": "YOUR_MODEL_URL",
+    "filepath": "endpoints/data/model.pth",
+    "update_key": "YOUR_UPDATE_KEY"
+}
