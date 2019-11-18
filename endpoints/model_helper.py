@@ -8,7 +8,8 @@ from io import BytesIO
 
 from .models.net import Net
 
-classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog',
+           'frog', 'horse', 'ship', 'truck')
 
 
 def load_online_model(model_url, local_file_path, delete_model=False):
@@ -85,7 +86,7 @@ def predict_from_url(image_url, model):
         # transform PIL Image to numpy - IMPORTANT: Convert to dtype=np.float32
         image_numpy = np.asarray(image_pil, dtype=np.float32)
 
-        # transpose the data to be in the correct format for the model. 
+        # transpose the data to be in the correct format for the model.
         # From (32,32,3) to (3,32,32) -> (2,0,1)
         image_numpy_t = np.transpose(image_numpy, (2, 0, 1))
 

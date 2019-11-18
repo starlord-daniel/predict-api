@@ -2,7 +2,6 @@ from flask import Blueprint, make_response, request, jsonify
 from flask.views import MethodView
 import json
 
-from endpoints import api
 from ..model_helper import predict_from_url, load_online_model
 
 simple = Blueprint('simple', __name__)
@@ -36,11 +35,6 @@ class PredictionRoute(MethodView):
 
 
 pred_route = PredictionRoute.as_view('pred_route')
-api.add_url_rule(
-    '/api/predict',
-    view_func=pred_route,
-    methods=['POST']
-)
 
 
 class UpdateRoute(MethodView):
@@ -69,8 +63,3 @@ class UpdateRoute(MethodView):
 
 
 update_route = UpdateRoute.as_view('update_route')
-api.add_url_rule(
-    '/api/update',
-    view_func=update_route,
-    methods=['POST']
-)
