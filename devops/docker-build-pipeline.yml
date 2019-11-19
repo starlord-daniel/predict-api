@@ -1,0 +1,36 @@
+# Replace config values and build & publish Docker image to Docker Hub
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: FileTransform@1
+      displayName: 'Insert credentials to config.json'
+      inputs:
+        folderPath: '$(System.DefaultWorkingDirectory)'
+        fileType: 'json'
+        targetFiles: |
+          config.json
+          latest
+    - task: Docker@2
+      displayName: buildAndPush
+      inputs:
+        containerRegistry: 'docker-hub-dheinze'
+        repository: 'dheinze/predict-service'
+        Dockerfile: Dockerfile
+        tags:
+          v0.0.$(Build.BuildId)
