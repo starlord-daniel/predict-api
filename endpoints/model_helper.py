@@ -17,24 +17,30 @@ def load_online_model(model_url, local_file_path, delete_model=False):
     Load the model from the specified url and
     save it at the specified file path.
     '''
+    model_path = f'{local_file_path}model.pth'
+
     # remove the old model
     try:
-        os.remove(local_file_path)
+        os.remove(model_path)
     except OSError:
         pass
 
     # load image
     url_response = requests.get(model_url)
 
-    with open(local_file_path, 'wb') as model_file:
+    # check, if filepath exists
+    if not os.path.exists(local_file_path):
+        os.makedirs(local_file_path)
+
+    with open(model_path, 'wb') as model_file:
         model_file.write(url_response.content)
 
     # load model into storage
-    model = load_local_model(local_file_path)
+    model = load_local_model(model_path)
 
     # delete downloaded model
     if(delete_model is True):
-        os.remove(local_file_path)
+        os.remove(model_path)
 
     return model
 
