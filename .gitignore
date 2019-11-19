@@ -110,3 +110,7 @@ data/*
 *.pt
 *.pth
 
+# tests
+.pytest_cache
+!tests/testdata/*
+config-dev.json

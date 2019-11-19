@@ -46,6 +46,11 @@ def load_online_model(model_url, local_file_path, delete_model=False):
 
 
 def load_local_model(filepath):
+    '''
+    Loads the model from local storage.
+
+    Returns: The loaded Pytorch model.
+    '''
     new_model = Net()
     new_model.load_state_dict(torch.load(filepath))
     new_model.eval()

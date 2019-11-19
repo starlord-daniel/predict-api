@@ -1,7 +1,7 @@
 # api/__init__.py
 from flask import Flask
 from flask_cors import CORS  # https://flask-cors.readthedocs.io/en/latest/
-from .model_helper import predict_from_url
+from .model_helper import predict_from_url, load_online_model, load_local_model
 from .routes import simple, pred_route, update_route
 
 api = Flask(__name__)
