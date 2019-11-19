@@ -12,7 +12,7 @@ To connect the API with the right model, you need to specify its location in the
 ```json
 {
     "model_url": "https://your.model.url",
-    "filepath": "api/data/model.pth",
+    "filepath": "endpoints/data/",
     "update_key": "LEMKLZSNWUGKLKGEWHSLAWFUWLGYWLZWJW"
 }
 ```
