@@ -1,5 +1,5 @@
 {
     "model_url": "YOUR_MODEL_URL",
     "filepath": "endpoints/data/",
-    "update_key": "YOUR_UPDATE_KEY"
+    "update_key": "ANY_SECRET_YOU_WANT"
 }
