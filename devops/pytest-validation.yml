@@ -16,13 +16,17 @@ pr:
     - README.md
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016'
 strategy:
   matrix:
     Python37:
       python.version: '3.7'
 
 steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+
 - task: FileTransform@1
   displayName: 'Insert credentials to config.json'
   inputs:
@@ -30,30 +34,20 @@ steps:
     fileType: json
     targetFiles: config.json
 
-- task: UsePythonVersion@0
-  displayName: 'Use Python >=3.7.4'
-  inputs:
-    versionSpec: '>=3.7.4'
-    architecture: 'x64'
-    addToPath: false
+- script: python -m pip install --upgrade pip setuptools wheel
+  displayName: 'Install tools'
 
 - script: 'pip install -r requirements.txt'
   displayName: 'Install dependencies'
 
-- script: 'pip install pytest && pytest tests --doctest-modules --junitxml=junit/test-results.xml'
-  displayName: pytest
+- script: |
+    pip install pytest
+    pip install pytest-cov
+    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+  displayName: 'Test with pytest'
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results **/test-results.xml'
   inputs:
     testResultsFiles: '**/test-results.xml'
     testRunTitle: 'Python $(python.version)'
-
-
-#Multi-configuration and multi-agent job options are not exported to YAML. Configure these options using documentation guidance: https://docs.microsoft.com/vsts/pipelines/process/phases
-
-
-
-
-
-

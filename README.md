@@ -1,5 +1,7 @@
 # Prediction API
-[![Build status](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_apis/build/status/Pytorch%20Predict%20API-Docker%20container-CI)](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_build/latest?definitionId=14)
+
+- Build Pipeline: [![Build Status](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_apis/build/status/ci-docker-build-and-push?branchName=master)](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_build/latest?definitionId=16&branchName=master)
+- Test Pipeline: [![Build Status](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_apis/build/status/build-validation-pytest?branchName=master)](https://dev.azure.com/dheinze/Pytorch%20Predict%20API/_build/latest?definitionId=17&branchName=master)
 
 [Latest image on Docker Hub](https://hub.docker.com/repository/docker/dheinze/predict-service)
 
