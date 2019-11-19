@@ -1,7 +1,16 @@
 # Replace config values and build & publish Docker image to Docker Hub
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+    exclude:
+    - devops/*
+    - tests/*
+    - README.md
+  
+# no PR builds
+pr: none
 
 resources:
 - repo: self
