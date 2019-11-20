@@ -1,4 +1,4 @@
-e# Replace config values and build & publish Docker image to Docker Hub
+# Replace config values and build & publish Docker image to Docker Hub
 
 trigger:
   branches:
@@ -30,8 +30,6 @@ stages:
   displayName: Build image
   jobs:  
   - job: Build
-    variables:
-      
     displayName: Build
     pool:
       vmImage: 'ubuntu-latest'
