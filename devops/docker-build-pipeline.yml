@@ -20,7 +20,10 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  major: 0
+  minor: 1
+  # counter variable doc: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops#counter
+  version: $[counter(format('{0}.{1}', variables['major'], variables['minor']), 1)]
 
 stages:
 - stage: Build
@@ -28,10 +31,7 @@ stages:
   jobs:  
   - job: Build
     variables:
-      major: 0
-      minor: 1
-      # counter variable doc: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops#counter
-      version: $[counter(format('{0}.{1}', variables['major'], variables['minor']), 1)]
+      
     displayName: Build
     pool:
       vmImage: 'ubuntu-latest'
