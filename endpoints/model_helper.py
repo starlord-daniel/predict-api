@@ -86,6 +86,8 @@ def softmax_naive(array):
 def predict_from_url(image_url, model):
     '''
     Get the output of a prediction on the model for the image at the url.
+
+    Returns: Dictionary of classes mapped to probabilities.
     '''
     try:
         # load image
