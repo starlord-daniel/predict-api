@@ -5,14 +5,14 @@ trigger:
     include:
     - master
     exclude:
-      - '*'
+    - azure-pipelines
   paths:
     include:
     - endpoints/*
     - Dockerfile
     - requirements.txt
     - run.py
-    - devops/docker-build-pipeline.yml
+    - devops/*
     exclude:
     - '*'
   
