@@ -47,9 +47,12 @@ steps:
     pip install pytest-cov
     pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
   displayName: 'Test with pytest'
+  continueOnError: true
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results **/test-results.xml'
   inputs:
+    testResultsFormat: 'JUnit'
     testResultsFiles: '**/test-results.xml'
+    failTaskOnFailedTests: true
     testRunTitle: 'Python $(python.version)'
