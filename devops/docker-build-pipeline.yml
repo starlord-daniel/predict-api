@@ -20,7 +20,11 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  major: 0
+  minor: 1
+  # counter variable doc: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops#counter
+  # IMPORTANT: path is still a single number - the prefix is just created to reset the counter when changes occur
+  patch: $[counter(format('{0}.{1}', variables['major'], variables['minor']), 1)]
 
 stages:
 - stage: Build
@@ -46,5 +50,5 @@ stages:
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
         tags: |
-          v0.0.$(Build.BuildId)
+          $(major).$(minor).$(patch)
           latest
