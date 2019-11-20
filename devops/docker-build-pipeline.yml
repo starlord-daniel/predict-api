@@ -4,12 +4,15 @@ trigger:
   branches:
     include:
     - master
+    exclude:
+      - '*'
   paths:
     include:
     - endpoints/*
     - Dockerfile
     - requirements.txt
     - run.py
+    - devops/docker-build-pipeline.yml
     exclude:
     - '*'
   
