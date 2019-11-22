@@ -13,8 +13,6 @@ trigger:
     - requirements.txt
     - run.py
     - devops/*
-    exclude:
-    - '*'
   
 # no PR builds
 pr: none
